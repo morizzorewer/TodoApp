@@ -1,51 +1,53 @@
-const inputwrapper1=document.getElementById("inputwrapper1");
-const inputbox1=document.getElementById("inputbox1");
-const taskArea = document.getElementById("task-area");
-const Addbutton=document.getElementById("Add-button");
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
 
+addBtn.addEventListener("click", addTask);
 
-Addbutton.addEventListener("click", () => {
-  const task = inputbox1.value.trim();
-  if (task) {
-    // Create task card
-    const card = document.createElement("div");
-    card.className = "task-card";
-
-    // Task text
-    const span = document.createElement("span");
-    span.textContent = task;
-
-    // Buttons
-    const updateBtn = document.createElement("button");
-    updateBtn.textContent = "Update";
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    const clearBtn = document.createElement("button");
-    clearBtn.textContent = "Clear";
-    const doneBtn = document.createElement("button");
-    doneBtn.textContent = "Done";
-
-    // Button actions
-    updateBtn.addEventListener("click", () => {
-      const newTask = prompt("Enter new task:");
-      if (newTask) span.textContent = newTask;
-    });
-    deleteBtn.addEventListener("click", () => card.remove());
-    clearBtn.addEventListener("click", () => span.textContent = "");
-    doneBtn.addEventListener("click", () => {
-      span.style.textDecoration = "line-through";
-    });
-
-    // Put everything together
-    card.appendChild(span);
-    card.appendChild(updateBtn);
-    card.appendChild(deleteBtn);
-    card.appendChild(clearBtn);
-    card.appendChild(doneBtn);
-
-    // Add card to task area
-    taskArea.appendChild(card);
-
-    inputbox1.value = ""; // clear input
+taskInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    addTask();
   }
 });
+
+function addTask() {
+  const taskText = taskInput.value.trim();
+
+  if (taskText === "") {
+    alert("Please enter a task.");
+    return;
+  }
+
+  const li = document.createElement("li");
+
+  const span = document.createElement("span");
+  span.textContent = taskText;
+
+  const buttonGroup = document.createElement("div");
+  buttonGroup.classList.add("task-buttons");
+
+  const completeBtn = document.createElement("button");
+  completeBtn.textContent = "Done";
+  completeBtn.classList.add("complete-btn");
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.classList.add("delete-btn");
+
+  completeBtn.addEventListener("click", function () {
+    li.classList.toggle("completed");
+  });
+
+  deleteBtn.addEventListener("click", function () {
+    li.remove();
+  });
+
+  buttonGroup.appendChild(completeBtn);
+  buttonGroup.appendChild(deleteBtn);
+
+  li.appendChild(span);
+  li.appendChild(buttonGroup);
+
+  taskList.appendChild(li);
+  taskInput.value = "";
+}
