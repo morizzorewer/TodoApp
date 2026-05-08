@@ -1,0 +1,149 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Heading */
+.headingWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.headingBox {
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: rgba(239, 217, 10, 0.85);
+  font-size: clamp(20px, 4vw, 32px); /* scales with screen */
+}
+
+.para {
+  text-align: center;
+  font-size: clamp(16px, 2.5vw, 20px);
+  margin: 15px 10px;
+}
+
+/* Input + Add button */
+#inputwrapper1 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#inputbox1 {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#Add-button {
+  font-size: 16px;
+  background-color: aqua;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Container */
+.todo-container {
+  max-width: 600px;        /* scales on big screens */
+  width: 90%;              /* fits mobile */
+  margin: 30px auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: rgb(149, 23, 23);
+}
+
+/* Task Card */
+.task-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #efbd7b;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 15px 0;
+}
+
+.task-card span {
+  flex: 1;
+  word-break: break-word; /* prevents overflow */
+}
+
+/* Buttons inside task card */
+.task-card button {
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.task-card button:hover {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
+
+/* Individual button colors */
+.task-card button:nth-child(2) { background-color: #28a745; } /* Update */
+.task-card button:nth-child(3) { background-color: #dc3545; } /* Delete */
+.task-card button:nth-child(4) { background-color: #6c757d; } /* Clear */
+.task-card button:nth-child(5) { background-color: #007bff; } /* Done */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .todo-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  #inputwrapper1 {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #Add-button {
+    width: 100%;
+  }
+
+  .task-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-card button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+
