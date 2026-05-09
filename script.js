@@ -4,8 +4,8 @@ const taskList = document.getElementById("taskList");
 
 addBtn.addEventListener("click", addTask);
 
-taskInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
+taskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
     addTask();
   }
 });
@@ -21,20 +21,21 @@ function addTask() {
   const li = document.createElement("li");
 
   const span = document.createElement("span");
+  span.className = "task-text";
   span.textContent = taskText;
 
-  const buttonGroup = document.createElement("div");
-  buttonGroup.classList.add("task-buttons");
+  const actions = document.createElement("div");
+  actions.className = "task-actions";
 
-  const completeBtn = document.createElement("button");
-  completeBtn.textContent = "Done";
-  completeBtn.classList.add("complete-btn");
+  const doneBtn = document.createElement("button");
+  doneBtn.className = "done-btn";
+  doneBtn.textContent = "Done";
 
   const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
   deleteBtn.textContent = "Delete";
-  deleteBtn.classList.add("delete-btn");
 
-  completeBtn.addEventListener("click", function () {
+  doneBtn.addEventListener("click", function () {
     li.classList.toggle("completed");
   });
 
@@ -42,11 +43,11 @@ function addTask() {
     li.remove();
   });
 
-  buttonGroup.appendChild(completeBtn);
-  buttonGroup.appendChild(deleteBtn);
+  actions.appendChild(doneBtn);
+  actions.appendChild(deleteBtn);
 
   li.appendChild(span);
-  li.appendChild(buttonGroup);
+  li.appendChild(actions);
 
   taskList.appendChild(li);
   taskInput.value = "";
