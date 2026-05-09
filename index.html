@@ -7,18 +7,29 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="app">
-  <div class="todo-card">
+  <div class="todo-box">
     <h1>Todo App</h1>
 
     <div class="input-row">
-      <input type="text" id="taskInput" placeholder="Enter a task..." />
+      <input type="text" id="taskInput" placeholder="Enter a task" />
       <button id="addBtn">Add</button>
     </div>
 
     <ul id="taskList"></ul>
   </div>
-  </main>
+
+  <!-- Custom edit popup -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <h2>Edit Task</h2>
+      <input type="text" id="editInput" placeholder="Edit your task" />
+
+      <div class="modal-buttons">
+        <button id="saveEditBtn" class="save-btn">Save</button>
+        <button id="cancelEditBtn" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
